@@ -1,0 +1,97 @@
+8.7 PEEK基板导热性能补充方案 / Supplemental Thermal Management Solutions for PEEK Substrate
+问题定性 / Problem Characterization
+PEEK基体的本征导热系数为0.246~0.29 W/(m·K)，远低于铜（≈400 W/(m·K)）和铝（≈200 W/(m·K)），在芯片散热路径中构成显著热阻。
+
+The intrinsic thermal conductivity of PEEK matrix is 0.246–0.29 W/(m·K), significantly lower than copper (≈400 W/(m·K)) and aluminum (≈200 W/(m·K)), constituting a notable thermal resistance in the chip heat dissipation path.
+
+值得注意的是，PEEK的导热系数随温度升高呈下降趋势——高温下声子散射增强导致导热进一步恶化，因此在CPU高负载工况下，PEEK基板的散热短板会被进一步放大。
+
+It is worth noting that the thermal conductivity of PEEK decreases with increasing temperature—enhanced phonon scattering at elevated temperatures further degrades its thermal performance, meaning the heat dissipation bottleneck becomes more pronounced under high CPU loads.
+
+以下从材料改性、界面填充、结构优化三个路径分别提出补充方案。
+
+The following supplemental solutions are proposed from three approaches: material modification, interface filling, and structural optimization.
+
+路径一：陶瓷垫片（高导热不导电材质） /
+Path 1: Ceramic Spacer (High-Thermal-Conductivity Non-Conductive Material)
+
+这是成本最低、工程上最易落地的方案。在PEEK基板与散热器之间垫入陶瓷薄片，将导热瓶颈从PEEK本身转移到陶瓷层。
+
+This is the lowest-cost, most engineering-feasible approach. A thin ceramic sheet is placed between the PEEK substrate and the heat sink, transferring the thermal bottleneck from the PEEK itself to the ceramic layer.
+
+常见陶瓷材料导热与力学性能对比如下：
+Comparative thermal and mechanical properties of common ceramic materials:
+
+材料 Material	导热系数 Thermal Conductivity (W/m·K)	抗弯强度 Flexural Strength (MPa)	CTE (10⁻⁶/K)	特性 Characteristics
+氧化铝 Al₂O₃	24~30	~500	7~9	性价比最高，占据陶瓷基板市场80%以上 / Best cost-performance ratio, dominates >80% of ceramic substrate market
+氮化铝 AlN	170~180	~450	5~6	导热接近铜的45%，CTE最接近硅 / Thermal conductivity ~45% of copper, CTE closely matched to silicon
+氮化硅 Si₃N₄	~90	~700	3~4	力学性能最优，抗弯强度最高 / Best mechanical properties, highest flexural strength
+氧化锆强化氧化铝 ZTA	~27	~700	7~10	比氧化铝韧性更优 / Improved fracture toughness over Al₂O₃
+工程建议 / Engineering Recommendations：
+
+概念验证阶段采用氧化铝（成本最低、易获取）/ Use Al₂O₃ for proof-of-concept (lowest cost, readily available)
+
+性能优化版本采用氮化铝 / Use AlN for performance-optimized versions
+
+陶瓷片建议厚度0.3~0.5mm，兼顾导热与结构强度 / Recommended ceramic thickness: 0.3–0.5mm, balancing thermal performance and structural integrity
+
+陶瓷本身为电绝缘体，可直接垫入PEEK基板与散热器之间 / Ceramic is electrically insulating and can be placed directly between PEEK substrate and heat sink
+
+路径二：导热填料改性PEEK复合材料 /
+Path 2: Thermally Conductive Filler-Modified PEEK Composite
+
+在不使用外部垫片的情况下，可向PEEK基板中混入导热填料，从材料层面提升其自身导热能力。已有研究表明，通过填料协同改性可实现导热系数显著提升：
+
+Without external spacers, thermal conductivity can be improved by incorporating thermally conductive fillers into the PEEK matrix. Existing studies show significant enhancement through synergistic filler modification:
+
+石墨烯/碳纤维协同增强：添加5wt%石墨烯 + 20wt%短切碳纤维，PEEK复合材料导热系数可达约1.25 W/(m·K)，提升约356%，抗拉强度同步提升43% / Graphene/carbon fiber synergy: 5wt% graphene + 20wt% short carbon fiber achieves ~1.25 W/(m·K), an increase of ~356%, with simultaneous 43% tensile strength improvement
+
+氨基改性石墨烯+碳纳米管：仅14.97vol%填料，面内导热达4.05 W/(m·K)，垂直方向约2.05 W/(m·K)，相比纯PEEK分别提升17.6倍和8.9倍 / Amino-modified graphene + CNT: with only 14.97vol% filler, in-plane thermal conductivity reaches 4.05 W/(m·K), out-of-plane ~2.05 W/(m·K), representing 17.6x and 8.9x improvements over pure PEEK
+
+锌铝合金填充：添加40% ZA8锌铝合金粉，导热提升至~0.298 W/(m·K)；额外添加5wt%石墨可达0.418 W/(m·K) / Zn-Al alloy filling: 40% ZA8 powder achieves ~0.298 W/(m·K); with additional 5wt% graphite, reaches 0.418 W/(m·K)
+
+工程建议 / Engineering Recommendations：
+
+此方案适用于需要整体提升基板导热能力的服务器/工作站版本 / Suitable for server/workstation versions requiring overall substrate thermal enhancement
+
+需权衡填料比例增加对加工流动性和材料韧性的影响 / Trade-off between filler loading and processability/ductility must be considered
+
+不适用于追求透明效果的消费级版本（填料会显著降低透明度） / Not suitable for consumer versions requiring transparency (fillers significantly reduce optical transmittance)
+
+路径三：导热界面材料（TIM）填充 /
+Path 3: Thermal Interface Material (TIM) Filling
+
+采用导热垫片或导热绝缘片填充PEEK基板与散热器之间的微观间隙，降低界面接触热阻。
+
+Thermal pads or insulating sheets are used to fill microscopic gaps between the PEEK substrate and the heat sink, reducing interfacial contact resistance.
+
+常见TIM材料方案：
+Common TIM material options:
+
+材料 Material	导热系数 Thermal Conductivity (W/m·K)	特点 Characteristics
+导热橡胶垫 Thermal Rubber Pad	1~6	需要一定压缩力填充间隙，操作简便 / Requires compression, easy to apply
+相变材料 Phase Change Material	2~4	工作时熔化填充界面，导热优于普通垫片 / Melts to fill gaps during operation, superior thermal performance
+导热粘接剂 Thermal Adhesive	1~5	可形成极薄粘接层，热阻更低 / Forms extremely thin bond line, lower thermal resistance
+工程建议 / Engineering Recommendations：
+
+适用于已有散热方案需要小幅改善的场景 / Suitable for scenarios requiring moderate thermal improvement
+
+导热垫片无需固化，适合快速验证 / Thermal pads require no curing, ideal for rapid prototyping
+
+相变材料导热性能更优，但需加热至工作温度才能达到最佳状态 / PCM offers better performance but requires heating to operating temperature for optimal performance
+
+整合建议 / Integrated Recommendations
+
+结合方案定位，推荐以下分层适配路径：
+Based on product positioning, the following tiered adaptation paths are recommended:
+
+版本 Version	推荐方案 Recommended Solution	依据 Rationale
+消费级（透明展示）Consumer (Transparent)	陶瓷垫片（氧化铝）+ 底部贴合 / Al₂O₃ ceramic spacer, bottom-mounted	不破坏透明性，成本低，导热提升明显 / Preserves transparency, low cost, significant thermal improvement
+服务器/工作站 Server/Workstation	导热填料改性PEEK 或 氮化铝陶瓷垫片 / Filler-modified PEEK or AlN ceramic spacer	需整体导热优化，可牺牲透明度 / Requires overall thermal optimization, transparency can be sacrificed
+概念验证样品 Prototype	氧化铝陶瓷垫片 / Al₂O₃ ceramic spacer	成本最低，验证结构可行性即可 / Lowest cost, sufficient for structural feasibility validation
+版本 / Version：v1.1 补充版 / Supplemental Edition
+日期 / Date：2026年7月 / July 2026
+起草人 / Drafted by：xumogu(Chinese Name: 徐梓岚)
+邮箱 / Email：xumogu1145@163.com
+**秉承互联网精神书写此内容
+**Write this content in line with the spirit of the Internet
