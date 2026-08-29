@@ -1,0 +1,255 @@
+版本 / Version：v1.2
+日期 / Date：2026年8月
+作者 / Author：徐梓岚 (Xumogu)
+邮箱 / Email：xumogu1145@163.com
+
+摘要 / Abstract
+中文：
+本文提出一种基于透明聚醚醚酮（PEEK）基板的先进封装架构，首次将各向异性导电胶（ACF）引入PC处理器封装领域，作为多层堆叠中的电隔离与垂直导通层。ACF在Z轴方向实现选择性导电，在X/Y平面保持绝缘特性，解决了透明基板堆叠中信号串扰与短路风险的结构性矛盾。同时，通过在ACF层上方嵌入石墨烯导热扩展层，并在PEEK基板下方预留陶瓷垫片接口，实现电信号与热量的物理空间解耦，弥补PEEK本征导热系数（0.25 W/(m·K)）不足的固有局限。该架构完全基于现有量产材料体系，无需开发新材料，为透明硬件在高性能计算封装中的应用提供了可验证的技术路径。
+
+English：
+This paper proposes an advanced packaging architecture based on transparent polyether ether ketone (PEEK) substrates, introducing anisotropic conductive film (ACF) into PC processor packaging for the first time as an electrical isolation and vertical conduction layer in multilayer stacking. The ACF layer provides selective Z-axis conductivity while maintaining X/Y plane insulation, resolving the structural conflict between signal crosstalk and short-circuit risks in transparent substrate stacking. Concurrently, a graphene thermal spreader layer is embedded above the ACF layer, and a ceramic spacer interface is reserved beneath the PEEK substrate, achieving physical decoupling of electrical signal paths from heat dissipation paths and compensating for PEEK's intrinsic low thermal conductivity (0.25 W/(m·K)). The architecture is entirely based on commercially available material systems, requiring no new material development, and offers a verifiable technical pathway for applying transparent hardware in high-performance computing packaging.
+
+关键词 / Keywords：透明PEEK，先进封装，各向异性导电胶，石墨烯热扩展，电-热解耦，芯片视觉展示 / Transparent PEEK, Advanced Packaging, Anisotropic Conductive Film, Graphene Thermal Spreading, Electrical-Thermal Decoupling, Die-Level Visual Showcase
+
+1. 引言 / Introduction
+中文：
+传统CPU封装基板以FR-4或BT树脂为主材，其不透明特性阻碍了芯片级视觉展示的可能性。随着透明硬件设计语言在消费电子领域的市场验证，将透明工程塑料引入高性能计算封装成为差异化竞争的新方向。然而，透明工程塑料（PEEK/PEI）的本征导热系数远低于金属和陶瓷，构成显著散热瓶颈。
+
+现有解决方案主要分为两类：一是向聚合物基体中添加高导热填料（石墨烯、碳纳米管、金属粉体），但填料比例增加会显著降低透明度；二是在基板外部附加散热结构，但无法解决基板本身的热阻问题。两者均未触及透明基板在多层电路堆叠中的电信号完整性与热管理之间的矛盾。
+
+本文提出一种四层封装架构，将ACF隔层与石墨烯导热扩展层同步引入透明PEEK基板体系中，在保持透明性的前提下，实现电信号传输与热量扩散在物理空间上的分离管理。ACF在PC封装中的应用属首次，其Z轴各向异性导电特性为多层堆叠提供了新的电连接范式。
+
+English：
+Conventional CPU packaging substrates predominantly use FR-4 or BT resins, whose opacity prevents chip-level visual showcasing. As transparent hardware design language has gained market validation in consumer electronics, introducing transparent engineering plastics into high-performance computing packaging represents a new direction for product differentiation. However, the intrinsic thermal conductivity of transparent engineering plastics (PEEK/PEI) is significantly lower than metals and ceramics, constituting a substantial heat dissipation bottleneck.
+
+Existing solutions fall into two main categories: adding high-thermal-conductivity fillers (graphene, carbon nanotubes, metal powders) to the polymer matrix, which significantly reduces transparency at high filler loadings, or attaching external cooling structures to the substrate, which does not address the substrate's intrinsic thermal resistance. Neither approach resolves the conflict between signal integrity and thermal management in multilayer transparent substrate stacking.
+
+This paper proposes a four-layer packaging architecture that simultaneously introduces an ACF interlayer and a graphene thermal spreader into the transparent PEEK substrate system, achieving physical separation of electrical signal transmission and heat dissipation while maintaining transparency. The application of ACF in PC packaging is unprecedented; its Z-axis anisotropic conductive characteristics provide a new electrical interconnection paradigm for multilayer stacking.
+
+2. 材料选型与性能基准 / Material Selection and Performance Baseline
+2.1 PEEK基板 / PEEK Substrate
+中文：
+PEEK作为基板主体材料，其透光率在1mm厚度下可达到85%以上，满足芯片视觉展示的基本要求。热膨胀系数为20–25 ppm/°C，与铜（≈17 ppm/°C）的匹配度优于玻璃基板（≈3 ppm/°C），有效降低热循环中的焊点疲劳风险。介电常数3.2–3.4（@1MHz），介电损耗0.003–0.005，与FR-4相当，不影响信号完整性。绝缘强度≥20 kV/mm，满足高压隔离需求。
+
+PEEK的固有劣势在于导热系数仅为0.25 W/(m·K)，在CPU高负载工况下会构成显著热阻。该缺陷需通过架构设计弥补，而非依赖材料改性。
+
+English：
+As the primary substrate material, PEEK exhibits optical transmittance exceeding 85% at 1mm thickness, meeting the basic requirements for chip-level visual showcasing. Its coefficient of thermal expansion (CTE) of 20–25 ppm/°C provides better matching with copper (≈17 ppm/°C) than glass substrates (≈3 ppm/°C), effectively reducing solder joint fatigue risk during thermal cycling. The dielectric constant of 3.2–3.4 (@1MHz) and dielectric loss of 0.003–0.005 are comparable to FR-4, with no adverse impact on signal integrity. Dielectric strength ≥20 kV/mm meets high-voltage isolation requirements.
+
+PEEK's inherent disadvantage lies in its thermal conductivity of only 0.25 W/(m·K), which constitutes a significant thermal resistance under high CPU loads. This deficiency must be addressed through architectural design rather than material modification.
+
+2.2 ACF隔层 / ACF Interlayer
+中文：
+ACF由导电粒子分散于绝缘胶粘剂中构成，其核心特性为：Z轴方向施加压力后导电粒子形成导通路径，电阻可低于10 mΩ；X/Y平面无压力时保持绝缘，绝缘电阻大于10¹²Ω。工作温度范围覆盖-40°C至+150°C，可满足工业级封装要求。
+
+ACF在显示驱动IC绑定及柔性电路板连接中已有成熟应用，但在PC处理器封装中尚无先例。本文将其引入作为透明基板多层堆叠中的关键电隔离层。
+
+English：
+ACF consists of conductive particles dispersed in an insulating adhesive matrix. Its key characteristics are: under Z-axis pressure, conductive particles form conductive paths with resistance below 10 mΩ; in the X/Y plane, it remains insulating with insulation resistance exceeding 10¹²Ω. The operating temperature range covers -40°C to +150°C, meeting industrial-grade packaging requirements.
+
+ACF is already maturely applied in display driver IC bonding and flexible circuit board connections, but has no precedent in PC processor packaging. This paper introduces it as a critical electrical isolation layer in multilayer transparent substrate stacking.
+
+2.3 石墨烯导热扩展层 / Graphene Thermal Spreader Layer
+中文：
+石墨烯薄膜的面内导热系数约1500 W/(m·K)，可将芯片热点热量沿水平方向快速铺开，增加有效散热面积。厚度控制在50–100 µm，不显著增加整体堆叠高度。
+
+English：
+Graphene film exhibits in-plane thermal conductivity of approximately 1500 W/(m·K), capable of rapidly spreading heat from chip hotspots in the horizontal direction and increasing effective heat dissipation area. Thickness is controlled at 50–100 µm, without significantly increasing overall stack height.
+
+2.4 陶瓷导热垫片（选配） / Ceramic Thermal Spacer (Optional)
+中文：
+对于需要增强垂直导热能力的场景，可在PEEK基板下方增设陶瓷垫片。氧化铝（24–30 W/(m·K)）适用于常规应用，氮化铝（170–180 W/(m·K)）适用于高功率场景。陶瓷垫片同时起到电绝缘作用，不干扰基板底部的信号布线。
+
+English：
+For scenarios requiring enhanced vertical thermal conductivity, a ceramic spacer can be added beneath the PEEK substrate. Alumina (24–30 W/(m·K)) is suitable for conventional applications, while aluminum nitride (170–180 W/(m·K)) is appropriate for high-power scenarios. The ceramic spacer also provides electrical insulation without interfering with signal routing on the substrate underside.
+
+3. 四层封装架构 / Four-Layer Packaging Architecture
+3.1 叠层结构 / Layer Stack
+层序 / Layer	功能定义 / Function	材料 / Material	厚度范围 / Thickness Range
+L1	电路走线与信号传输 / Circuit Routing & Signal Transmission	铜箔 / Copper Foil	18–35 µm
+L2	横向热扩散 / Lateral Heat Spreading	石墨烯/热解石墨 / Graphene/Pyrolytic Graphite	50–100 µm
+L3	Z轴电导通 + X/Y平面电隔离 / Z-axis Conduction + X/Y Insulation	ACF	25–50 µm
+L4	结构支撑与视觉展示 / Structural Support & Visual Showcase	透明PEEK / Transparent PEEK	0.5–1.0 mm
+3.2 功能解耦逻辑 / Functional Decoupling Logic
+中文：
+该架构的核心设计原则为电、热、光三条物理路径在垂直方向上的分离管理：
+
+电信号路径：芯片I/O → 铜箔电路层（L1）→ ACF的Z轴导电粒子（L3）→ PEEK基板底部的焊接球（L4底面）。ACF层在垂直方向提供低电阻导通路径，在水平方向保证相邻信号之间的绝缘隔离，无需额外开槽或填充绝缘材料。
+
+热量路径：芯片产生的热量 → 石墨烯层（L2）横向铺开 → 通过L2上表面传导至上方散热器（主动散热）或通过L3/L4传导至下方陶瓷垫片（被动散热）。两条导热路径可同时工作，互为补充。
+
+光学路径：透过透明PEEK基板（L4）观察芯片背面、内部电路走线、空腔结构及ACF层的分布形态。L2石墨烯层采用薄层设计，不影响整体透光性；L3 ACF层的导电粒子分布构成独特微观纹理，在透明基板下呈现可辨识的视觉特征。
+
+English：
+The core design principle of this architecture is the vertical separation of three physical paths—electrical, thermal, and optical:
+
+Electrical Signal Path: Chip I/O → Copper circuit layer (L1) → ACF Z-axis conductive particles (L3) → Solder balls on PEEK substrate underside (L4 bottom surface). The ACF layer provides low-resistance vertical conduction paths while ensuring insulation isolation between adjacent signals in the horizontal direction, eliminating the need for additional trenches or insulating fillers.
+
+Thermal Path: Heat generated by the chip → Lateral spreading through graphene layer (L2) → Conducted upward to heat sink via L2 top surface (active cooling) or downward through L3/L4 to ceramic spacer (passive cooling). Both thermal paths can operate simultaneously and complement each other.
+
+Optical Path: Observation of chip backside, internal circuit routing, cavity structures, and ACF layer distribution through the transparent PEEK substrate (L4). The thin L2 graphene layer does not significantly affect overall transmittance; the conductive particle distribution in the L3 ACF layer creates a distinctive microscopic texture visible beneath the transparent substrate.
+
+3.3 叠层结构示意图 / Layer Stack Diagram
+text
+                    ┌────────────────────────────────────┐
+                    │  L1: 铜电路走线层（信号+电源）      │  ← 芯片贴装侧
+                    │      Copper Circuit Layer         │
+                    ├────────────────────────────────────┤
+                    │  L2: 石墨烯热扩展层                │  ← 水平导热路径
+                    │      Graphene Thermal Spreader    │
+                    ├────────────────────────────────────┤
+                    │  L3: ACF 各向异性导电胶隔层        │  ← Z轴导通 + X/Y绝缘
+                    │      ACF Layer                   │
+                    ├────────────────────────────────────┤
+                    │  L4: 透明PEEK基板主体              │  ← 结构支撑 + 视觉展示
+                    │      Transparent PEEK Substrate   │
+                    └────────────────────────────────────┘
+                              ↑
+                         芯片贴装方向 / Chip Attach Direction
+
+                    ↓ 热量可向下传导至陶瓷垫片 / Heat can conduct downward to ceramic spacer
+                    ↓ 光线可从底部穿过基板 / Light can transmit through substrate from bottom
+4. 制造流程概念设计 / Manufacturing Process Concept Design
+4.1 流程步骤 / Process Steps
+中文：
+步骤S1 — PEEK骨架注塑成型
+采用透明PEEK粒料注塑成型基板骨架，预留电路层压区域、ACF贴附区域以及可选的空腔结构。注塑参数控制：模温约180°C，保压压力约80MPa，表面平整度≤50µm。
+
+步骤S2 — 石墨烯层贴附
+将石墨烯薄膜或热解石墨片通过热压工艺贴附于PEEK骨架的顶部表面。热压温度约150°C，压力0.3–0.5MPa，确保石墨烯层与PEEK表面紧密贴合且无皱褶。
+
+步骤S3 — ACF预贴附
+在石墨烯层上方贴附ACF胶膜。贴附温度80–100°C，低压预压使ACF初步粘附于石墨烯表面，暂不施加最终固化压力。
+
+步骤S4 — 铜箔电路层压
+将铜箔及图案化的电路层与ACF同步进行热压合。温度升至170–180°C，压力2–3MPa，使ACF完全固化并实现铜箔与下方石墨烯层之间的Z轴电连接。ACF压缩量控制在10–30%，以保证Z轴电阻稳定性。
+
+步骤S5 — 激光钻孔与导通孔成型
+在需要垂直互连的位置进行激光钻孔，孔径≤100µm，孔内电镀或填充导电浆料，实现L1铜电路与基板底部焊盘之间的电气连接。
+
+English：
+Step S1 — PEEK Skeleton Injection Molding
+Transparent PEEK pellets are injection-molded to form the substrate skeleton, with reserved areas for circuit lamination, ACF attachment, and optional cavity structures. Process control: mold temperature approximately 180°C, holding pressure approximately 80MPa, surface flatness ≤50µm.
+
+Step S2 — Graphene Layer Lamination
+Graphene film or pyrolytic graphite sheet is attached to the top surface of the PEEK skeleton via hot pressing. Lamination temperature approximately 150°C, pressure 0.3–0.5MPa, ensuring intimate contact between the graphene layer and PEEK surface without wrinkles.
+
+Step S3 — ACF Pre-Lamination
+ACF film is applied above the graphene layer. Application temperature 80–100°C with low-pressure pre-bonding to achieve initial adhesion of ACF to the graphene surface; final curing pressure is not yet applied.
+
+Step S4 — Copper Circuit Lamination
+Copper foil and patterned circuit layers are simultaneously laminated with ACF. Temperature is raised to 170–180°C, pressure 2–3MPa, achieving full ACF curing and Z-axis electrical connection between the copper foil and underlying graphene layer. ACF compression is controlled at 10–30% to ensure Z-axis resistance stability.
+
+Step S5 — Laser Drilling and Via Formation
+Laser drilling is performed at locations requiring vertical interconnection, with hole diameter ≤100µm. Holes are plated or filled with conductive paste to establish electrical connection between L1 copper circuits and substrate bottom pads.
+
+4.2 关键工艺控制要点 / Critical Process Control Points
+中文：
+温度窗口匹配：ACF固化温度（约170°C）需低于PEEK的长期耐热上限（250°C），同时避免石墨烯层在高温下氧化。工艺窗口窄，需精密温控。
+
+ACF压缩均匀性：ACF压缩量直接影响Z轴电阻的批次一致性。推荐压缩量10–30%，需在层压设备中设置均匀的压力分布，避免边缘与中心区域差异过大。
+
+石墨烯层完整性：石墨烯层在热压过程中需避免折叠、破损或位移，否则将导致横向导热不均匀或局部短路。可采用预定位粘附方式固定。
+
+English：
+Temperature Window Matching: The ACF curing temperature (approximately 170°C) must remain below PEEK's long-term thermal resistance upper limit (250°C), while avoiding oxidation of the graphene layer at elevated temperatures. The processing window is narrow and requires precise temperature control.
+
+ACF Compression Uniformity: ACF compression directly affects batch-to-batch consistency of Z-axis resistance. Recommended compression range 10–30%, requiring uniform pressure distribution in lamination equipment to avoid excessive variation between edge and center regions.
+
+Graphene Layer Integrity: The graphene layer must avoid folding, damage, or displacement during hot pressing, as these would cause non-uniform lateral thermal conductivity or localized shorts. Pre-positioning adhesion methods can be used for fixation.
+
+5. 关键技术讨论 / Key Technical Discussion
+5.1 ACF在PC封装中的适用性分析 / Applicability Analysis of ACF in PC Packaging
+中文：
+ACF在显示驱动IC绑定中的典型应用场景为单层芯片与玻璃基板之间的连接，导电粒子密度通常在500–2000个/mm²，可提供足够的导通密度。本文将其应用于PC处理器封装中，需考察以下差异：
+
+I/O密度差异：PC处理器I/O数量显著高于显示驱动IC，需要更高导电粒子密度的ACF型号。现有高速/高密度ACF产品（如用于COF封装的型号）可满足1000–3000个/mm²的需求。
+
+功率差异：PC处理器工作电流远高于显示驱动IC，Z轴电阻需控制在10mΩ以下以确保IR压降在可接受范围。低电阻ACF型号已可实现此要求。
+
+可靠性差异：PC封装经历温度循环的频次和幅度高于消费电子显示模组。选用汽车级ACF（-40°C至150°C）可满足该需求。
+
+上述差异均为现有ACF产品体系内可覆盖的范围，不涉及新材料的开发。
+
+English：
+ACF's typical application scenario in display driver IC bonding involves single-layer chip-to-glass connections with conductive particle density typically ranging from 500–2000 particles/mm², providing sufficient connection density. When applying this to PC processor packaging, the following differences must be examined:
+
+I/O Density Difference: PC processors have significantly higher I/O counts than display driver ICs, requiring ACF grades with higher conductive particle density. Existing high-speed/high-density ACF products (e.g., those used for COF packaging) can meet the requirement of 1000–3000 particles/mm².
+
+Power Difference: PC processors operate at much higher currents than display driver ICs, requiring Z-axis resistance to be controlled below 10mΩ to ensure IR drop remains within acceptable limits. Low-resistance ACF grades already meet this requirement.
+
+Reliability Difference: PC packaging experiences temperature cycling with greater frequency and amplitude than consumer display modules. Automotive-grade ACF (-40°C to 150°C) can meet these requirements.
+
+These differences are all within the coverage range of existing ACF product families and do not require new material development.
+
+5.2 电-热解耦的物理实现 / Physical Implementation of Electrical-Thermal Decoupling
+中文：
+本架构中电信号与热量在空间上的分离管理，依赖于两个设计选择：
+
+电信号路径限制：ACF的X/Y平面绝缘特性强制电信号仅沿Z轴方向传输，与L1层的铜走线共同构成垂直互连网络。L2石墨烯层位于ACF与电路层之间，但不参与电信号传输——石墨烯本身具有导电性，但其位于ACF的Z轴导通路径之外，仅作为导热介质使用。L2与L1之间通过铜箔与石墨烯的物理接触实现热传导，但不构成电路电气连接。
+
+热量路径多选择：热量可通过L2层向上传导至散热器，也可通过ACF和PEEK向下传导至陶瓷垫片。ACF虽导热性不佳，但在薄层（25–50µm）下其热阻有限，不足以阻断向下导热路径。
+
+English：
+The spatial separation of electrical signals and heat in this architecture relies on two design choices:
+
+Electrical Path Confinement: The X/Y plane insulation characteristic of ACF forces electrical signals to travel only along the Z-axis direction, forming a vertical interconnection network together with the L1 copper traces. The L2 graphene layer sits between ACF and the circuit layer but does not participate in electrical signal transmission—graphene itself is conductive, but it lies outside the ACF Z-axis conduction path and functions solely as a thermal medium. Thermal conduction between L2 and L1 is achieved through physical contact between copper foil and graphene, but does not constitute an electrical circuit connection.
+
+Thermal Path Redundancy: Heat can be conducted upward through the L2 layer to the heat sink, or downward through ACF and PEEK to the ceramic spacer. Although ACF has poor thermal conductivity, its thin layer (25–50µm) presents limited thermal resistance, insufficient to block the downward thermal path.
+
+5.3 透明展示的实现与限度 / Realization and Limits of Transparent Showcasing
+中文：
+在不添加玻璃纤维增强的情况下，1mm厚纯PEEK透光率为85–88%。若需增加玻璃纤维提升刚度，透光率降至40–50%，呈半透明雾状效果，仍可分辨芯片轮廓与内部结构。
+
+ACF层在透明PEEK基板下呈现为规则的导电粒子散布图案，与铜电路走线构成层次分明的视觉信息，而非单层透明效果。此为透明基板架构特有的视觉特征，有别于传统外壳透明设计。
+
+English：
+Without glass fiber reinforcement, 1mm thick pure PEEK achieves optical transmittance of 85–88%. If glass fiber reinforcement is required for increased stiffness, transmittance decreases to 40–50%, producing a semi-transparent frosted effect while still allowing chip outline and internal structures to be discernible.
+
+The ACF layer beneath the transparent PEEK substrate presents a regular distribution pattern of conductive particles, forming layered visual information together with copper circuit traces, rather than a single-layer transparent effect. This is a unique visual characteristic of the transparent substrate architecture, distinct from conventional enclosure-based transparent designs.
+
+6. 风险分析 / Risk Analysis
+6.1 多材料界面分层风险 / Delamination Risk at Multi-Material Interfaces
+中文：
+四层材料（PEEK、ACF、石墨烯、铜）在热循环中具有不同的热膨胀系数。PEEK为20–25 ppm/°C，铜为17 ppm/°C，ACF胶粘体系约30–40 ppm/°C，石墨烯面内热膨胀系数极低（约-1至1 ppm/°C）。差异最大处位于石墨烯与ACF界面，需通过选择低模量ACF胶层吸收应变，或增加中间过渡层。
+
+English：
+The four material layers (PEEK, ACF, graphene, copper) exhibit different CTEs under thermal cycling. PEEK is 20–25 ppm/°C, copper is 17 ppm/°C, ACF adhesive system is approximately 30–40 ppm/°C, and graphene in-plane CTE is extremely low (approximately -1 to 1 ppm/°C). The greatest mismatch occurs at the graphene-ACF interface, which requires either selecting low-modulus ACF adhesive to absorb strain or adding an intermediate transition layer.
+
+6.2 ACF长期可靠性 / ACF Long-Term Reliability
+中文：
+ACF在高温高湿环境下可能存在导电粒子氧化或胶粘剂老化问题。现有汽车级ACF产品已在-40°C至125°C环境中验证超过1000次热循环，可满足PC封装的基本要求。对于服务器等需要更长寿命的场景，建议选用增强型ACF型号或增加保护涂层。
+
+English：
+ACF may face conductive particle oxidation or adhesive aging issues under high-temperature and high-humidity conditions. Existing automotive-grade ACF products have been validated for over 1000 thermal cycles at -40°C to 125°C, meeting basic PC packaging requirements. For server applications requiring extended service life, enhanced ACF grades or additional protective coatings are recommended.
+
+6.3 石墨烯导热层衰减 / Graphene Thermal Layer Degradation
+中文：
+石墨烯在高温环境下可能发生氧化，导致导热系数下降。选择封装级抗氧化石墨烯产品（表面钝化处理）可将衰减控制在可接受范围内。石墨烯层的失效对电性能无影响（不承担电信号传输），仅降低热管理裕量。
+
+English：
+Graphene may undergo oxidation at elevated temperatures, resulting in decreased thermal conductivity. Selecting packaging-grade oxidation-resistant graphene products (surface-passivated) can keep degradation within acceptable limits. Failure of the graphene layer has no impact on electrical performance (it does not carry electrical signals), only reducing thermal management margin.
+
+6.4 制造良率 / Manufacturing Yield
+中文：
+透明PEEK注塑、ACF贴附、铜箔层压三道工序的工艺窗口窄，初始良率可能偏低。建议采用批次验证方式逐步优化参数，而非一次性大规模投产。
+
+English：
+The three processes—transparent PEEK injection molding, ACF attachment, and copper foil lamination—have narrow processing windows, potentially resulting in low initial yields. Batch validation with progressive parameter optimization is recommended rather than single large-scale production runs.
+
+7. 结论 / Conclusion
+中文：
+本文提出一种基于透明PEEK基板的四层封装架构，首次将各向异性导电胶（ACF）引入PC处理器封装领域。ACF作为电隔离与垂直导通层，利用其Z轴选择性导电与X/Y平面绝缘特性，解决了透明基板多层堆叠中的信号串扰与短路风险问题。石墨烯导热扩展层与陶瓷垫片构成互补的双向导热路径，在PEEK本征导热系数仅为0.25 W/(m·K)的条件下，通过架构设计实现了电信号路径与热量扩散路径的物理空间解耦。
+
+该架构完全基于现有量产材料体系，不涉及新材料开发。透明PEEK基板保持芯片背面与内部电路走线的可见性，ACF导电粒子分布与铜电路走线在透明基板下构成层次分明的视觉特征，为硬件设计提供了传统封装无法实现的展示维度。
+
+本文论证了ACF在PC封装中应用的可行性，并给出了从材料选型、叠层结构到制造流程的完整架构设计。该方案为透明高性能计算硬件的封装技术提供了一条不依赖材料突破的工程路径。
+
+English：
+This paper proposes a four-layer packaging architecture based on transparent PEEK substrates, introducing anisotropic conductive film (ACF) into PC processor packaging for the first time. The ACF layer, leveraging its selective Z-axis conductivity and X/Y plane insulation, addresses signal crosstalk and short-circuit risks in multilayer transparent substrate stacking. The graphene thermal spreader layer, complemented by a ceramic spacer, forms a dual-path thermal management system that physically decouples the electrical signal path from the heat dissipation path, compensating for PEEK's intrinsic thermal conductivity of only 0.25 W/(m·K) through architectural design rather than material modification.
+
+The entire architecture is based on commercially available material systems, requiring no new material development. The transparent PEEK substrate maintains visibility of the chip backside and internal circuit routing, while the ACF conductive particle distribution and copper traces present layered visual characteristics beneath the transparent substrate, offering a visual dimension unattainable by conventional packaging.
+
+This paper demonstrates the feasibility of applying ACF in PC packaging and provides a complete architectural design spanning material selection, layer stacking, and manufacturing process. The proposed solution offers an engineering pathway for transparent high-performance computing hardware packaging that does not depend on material breakthroughs.
+
